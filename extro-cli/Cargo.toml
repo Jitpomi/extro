@@ -9,5 +9,13 @@ edition = "2021"
 component_type = "server"
 
 [dependencies]
+# command ling argument parser
+clap = { version = "4.5.40", features = ["derive"] }
 colored = "3.0.0"
+console = "0.15.11"
+dialoguer = "0.11.0"
 ferrisup-common = "0.2.1"
+
+[dev-dependencies]
+mockall = "0.13.1"
+rstest = "0.25.0"
