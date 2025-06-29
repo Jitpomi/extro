@@ -1,85 +1,87 @@
-# extro
+# Extro: Universal Extension Framework
 
-This template provides a minimal starting point for a Rust project with a simple `main.rs` file and no external dependencies.
+Extro is an AI-powered universal extension framework enabling developers to create, transform, and optimize plugins for any platform using any language. With the motto "Write Once, Extend Everywhere," Extro uses AI-driven code generation to eliminate boilerplate and platform-specific complexity.
 
 ## Features
 
-- Clean, minimal structure
-- No external dependencies
-- Simple "Hello, World!" example
-- Ready for customization
+- **AI-Powered Code Generation**: Direct code generation without templates
+- **Cross-Platform**: Support for VSCode, Chrome, Blender, JetBrains, Godot, Figma, and more
+- **Cross-Language**: Generate extensions in JavaScript, Python, C++, GDScript, and other languages
+- **Intent-Driven**: Abstract your extension's purpose, not just its implementation
 
 ## Getting Started
 
-After generating your project with FerrisUp, follow these steps:
-
-1. Navigate to your project directory:
+1. Install Extro:
    ```bash
-   cd extro
+   cargo install extro
    ```
 
-2. Run the program:
+2. Create a new extension:
    ```bash
-   cargo run
+   extro extend my-extension
+   ```
+   Follow the interactive prompts to select your target platform, extension type, and language.
+
+3. Transform an existing extension to another platform:
+   ```bash
+   extro transform --source ./my-vscode-extension --target chrome
    ```
 
-3. Build for release:
+4. Optimize your extension:
    ```bash
-   cargo build --release
+   extro optimize ./my-extension
    ```
 
 ## Project Structure
 
-- `src/main.rs`: Main application entry point
-- `Cargo.toml`: Project configuration (initially with no dependencies)
+- `extro-cli`: Main CLI application
+  - `src/main.rs`: CLI entry point and command routing
+  - `src/commands/`: Command implementations
+- `ARCHITECTURE.md`: Detailed architecture documentation
+- `Cargo.toml`: Workspace configuration
 
-## Customization
+## Architecture
 
-### Adding Dependencies
+Extro follows a modular architecture with these key components:
 
-Edit the `Cargo.toml` file to add dependencies:
+1. **EXTRO CLI**: Command-line interface for user interaction
+2. **EXTRO BRAIN**: Central orchestrator coordinating all components
+3. **EXTRO INTENT**: Intermediate representation of extension intent
+4. **AI ENGINE**: Direct code generation from intent
+5. **PLATFORM ADAPTERS**: Platform-specific translation layers
 
-```toml
-[dependencies]
-serde = { version = "1.0", features = ["derive"] }
-reqwest = { version = "0.11", features = ["json"] }
-```
+For detailed architecture information, see `ARCHITECTURE.md`.
 
-### Expanding the Project
+## Extending Extro
 
-As your project grows, consider adding:
+Extro is designed for extensibility. You can contribute:
 
-1. A `lib.rs` file for shared functionality:
-   ```bash
-   touch src/lib.rs
+1. **New Platform Adapters**:
+   ```rust
+   // Example of a platform adapter implementation
+   pub struct NewPlatformAdapter {}
+   
+   impl PlatformAdapter for NewPlatformAdapter {
+       // Implementation details
+   }
    ```
 
-2. Module files in the `src` directory:
-   ```bash
-   mkdir -p src/utils
-   touch src/utils/mod.rs
-   ```
+2. **New Language Support**:
+   Add language-specific code generation capabilities
 
-3. Tests in a separate directory:
-   ```bash
-   mkdir -p tests
-   touch tests/integration_tests.rs
-   ```
+3. **Custom AI Models**:
+   Integrate additional AI models via Candle-compatible backends
 
 ## Next Steps
 
-- Add your own code to `src/main.rs`
-- Add dependencies as needed in `Cargo.toml`
-- Set up a Git repository:
-  ```bash
-  git init
-  git add .
-  git commit -m "Initial commit"
-  ```
-- Consider adding a `.gitignore` file for Rust projects
+- Read the `ARCHITECTURE.md` file for detailed design information
+- Explore the source code in the `src` directory
+- Try creating extensions for different platforms
+- Contribute to the project on GitHub
 
 ## Resources
 
-- [The Rust Programming Language Book](https://doc.rust-lang.org/book/)
-- [Rust By Example](https://doc.rust-lang.org/rust-by-example/)
-- [Rust Standard Library Documentation](https://doc.rust-lang.org/std/)
+- [Candle ML Framework](https://github.com/huggingface/candle) - Rust-native ML inference
+- [llm-chain](https://github.com/sobelio/llm-chain) - Structured prompting for LLMs in Rust
+- [clap](https://github.com/clap-rs/clap) - Command line argument parsing for Rust
+- [Extension Development Documentation](https://github.com/jitpomi/extro/wiki) - Coming soon

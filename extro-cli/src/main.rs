@@ -221,7 +221,7 @@ impl ExtroManifest {
 #[derive(Subcommand)]
 enum Commands {
     /// Create a new extension
-    New {
+    Extend {
         /// The name of the extension (optional will be prompted if not provided)
         name: Option<String>,
     },
@@ -254,7 +254,7 @@ fn main() {
     let answer_style = Style::new().green().bold().italic();
     let cli = Cli::parse();
     match cli.command {
-        Commands::New { name } => {
+        Commands::Extend { name } => {
             let ext_name = name.unwrap_or_else(|| 
                 ask!(input "🛠️  What's the name of your extension?")
             );
